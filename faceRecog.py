@@ -84,14 +84,14 @@ prediction_titles=[]
 true_positive=0
 for i in range(y_pred.shape[0]):
     if i < len(y_test):
-        name_true = class_names[y_test[i]]  # True class name
+        true_name = class_names[y_test[i]]  # True class name
     else:
-        name_true = "Unknown"
+        true_name = "Unknown"
     pred_name=class_names[y_pred[i]]
     result='pred:%s,pr:%s \ntrue: %s' %(pred_name,str(y_prob[i])[0:3],true_name)
 
     prediction_titles.append(result)
-    if name_true==pred_name:
+    if true_name==pred_name:
         true_positive=true_positive+1
 print("Accuracy:",true_positive*100/y_pred.shape[0])
 plot_gallery(X_test,prediction_titles,h,w)
